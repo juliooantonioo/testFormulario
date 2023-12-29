@@ -26,7 +26,7 @@ export const ModalResume = ({open, setOpen}) => {
         {
           Object.values(form).map(element => 
             <DialogContentText key={element.id + element.label + 'ModalResume'}>
-              {element.label} : {element.valueLabel}
+              {element.label} : {element.valueLabel} {element.disabled && 'Campo deshabilitado'}
             </DialogContentText>
             )
         }

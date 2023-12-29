@@ -15,9 +15,10 @@ interface InputSelect {
   validation: string;
   isRequired: boolean; 
   items: Array<Items>;
+  disabled: boolean;
 }
 
-export const InputSelect = ({ label, name, items, isRequired }: InputSelect) => {
+export const InputSelect = ({ label, name, items, isRequired, disabled }: InputSelect) => {
 
   const dispatch = useAppDispatch();
   const {form, showError} = useAppSelector(state => state.formulario);
@@ -39,6 +40,7 @@ export const InputSelect = ({ label, name, items, isRequired }: InputSelect) => 
         onChange={onChange}
         error={error && showError}
         value={value}
+        disabled={disabled}
       >
         {
           items.map((element) =>

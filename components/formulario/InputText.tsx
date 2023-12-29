@@ -1,5 +1,5 @@
-import { FormControl, FormHelperText, Grid, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import { FormControl, TextField } from '@mui/material'
+import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { changeValueForm } from '../../slices/formularioSlice';
 import { validated } from '../../functions/validated';
@@ -9,9 +9,10 @@ interface InputText {
   name: string;
   validation: string;
   isRequired: boolean;
+  disabled: boolean;
 }
 
-export const InputText = ({ label, name, validation, isRequired }: InputText )  => {
+export const InputText = ({ label, name, validation, isRequired, disabled }: InputText )  => {
   const dispatch = useAppDispatch();
   const {form, showError} = useAppSelector(state => state.formulario);
   const {[name] : valoresInput} = form;
@@ -29,6 +30,7 @@ export const InputText = ({ label, name, validation, isRequired }: InputText )  
         required={isRequired}
         error={error && showError}
         value={value}
+        disabled={disabled}
         onChange={onChange}
         helperText={error && showError && "Este campo tiene un problema."}
       />

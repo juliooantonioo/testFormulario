@@ -1,5 +1,5 @@
 import { FormControl, FormControlLabel, FormHelperText, FormLabel, Radio, RadioGroup } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { changeValueForm } from '../../slices/formularioSlice';
 import { labelTargetValue } from '../../functions/labelTargetValue';
@@ -15,9 +15,10 @@ interface InputRadio {
   validation: string;
   isRequired: boolean;
   items: Array<Items>;
+  disabled: boolean;
 }
 
-export const InputRadio = ({label, name, items, isRequired} : InputRadio) => {
+export const InputRadio = ({label, name, items, isRequired, disabled} : InputRadio) => {
 
   const dispatch = useAppDispatch();
   const {form, showError} = useAppSelector(state => state.formulario);
@@ -31,7 +32,7 @@ export const InputRadio = ({label, name, items, isRequired} : InputRadio) => {
   };
 
   return (
-    <FormControl fullWidth error={error && showError} required={isRequired}>
+    <FormControl fullWidth error={error && showError} required={isRequired} disabled={disabled}>
       <FormLabel >{label}</FormLabel>
       <RadioGroup
         row

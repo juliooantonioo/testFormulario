@@ -38,7 +38,7 @@ export const Formulario = () => {
   }
 
   const validateForm = () => {
-    const todosLosCamposValidos = Object.values(form).every(item => item.error === false);
+    const todosLosCamposValidos = Object.values(form).every(item => item.error === false || item.disabled);
     if (todosLosCamposValidos){
       setOpenModal(true);
     } else {
@@ -67,6 +67,7 @@ export const Formulario = () => {
                 items={element.items}
                 isRequired={element.isRequired}
                 validation={element.validation}
+                disabled = {element.disabled}
               />
             )
           }
